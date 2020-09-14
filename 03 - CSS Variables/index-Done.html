@@ -37,6 +37,21 @@
     <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500" />
 
     <style>
+      :root {
+        --base: #ffc600;
+        --spacing: 10px;
+        --blur: 10px;
+      }
+
+      img {
+        padding: var(--spacing);
+        background: var(--base);
+        filter: blur(var(--blur));
+      }
+
+      .hl {
+        color: var(--base);
+      }
       /*
       misc styles, nothing to do with CSS variables
     */
@@ -61,29 +76,20 @@
 
     <script>
       {
-        // const spacingRange = document.querySelector("#spacing");
-        // const blurRange = document.querySelector("#blur");
-        // const clorFicker = document.querySelector("#base");
-        // const imgElem = document.querySelector("img");
-        // window.addEventListener("load", work);
-        // const inputElems = document.querySelectorAll("input");
-        // inputElems.forEach((rangeBar) => {
-        //   rangeBar.addEventListener("change", work);
+        // const inputElems = document.querySelectorAll(".controls input");
+
+        // inputElems.forEach((inputElems) => {
+        //   inputElems.addEventListener("change", workwork);
+        //   inputElems.addEventListener("mousemove", workwork);
         // });
-        // function work() {
-        //   let sizing = spacingRange.value;
-        //   let blurring = blurRange.value;
-        //   let colorring = clorFicker.value;
-        //   imgElem.style.padding = `${sizing}px`;
-        //   imgElem.style.filter = `blur(${blurring}px)`;
-        //   imgElem.style.backgroundColor = `${colorring}`;
-        //   if (this === spacingRange) {
-        //     imgElem.style.padding = `${sizing}px`;
-        //   } else if (this === blurRange) {
-        //     imgElem.style.filter = `blur(${blurring}px)`;
-        //   } else if (this === clorFicker) {
-        //     imgElem.style.backgroundColor = `${colorring}`;
-        //   }
+        // function workwork() {
+        //   console.log(this.dataset);
+        //   console.log(this.dataset.sizing);
+        //   const suffix = this.dataset.sizing || "";
+        //   document.documentElement.style.setProperty(
+        //     `--${this.name}`,
+        //     this.value + suffix
+        //   );
         // }
         const spacingRange = document.querySelector("#spacing");
         const blurRange = document.querySelector("#blur");
@@ -96,6 +102,7 @@
         clorFicker.addEventListener("change", work);
 
         function work() {
+          console.log(this.value);
           let sizing = spacingRange.value;
           let blurring = blurRange.value;
           let colorring = clorFicker.value;
@@ -113,7 +120,6 @@
           }
         }
       }
-      // 쿼리셀렉을 많이 쓴 것, 이벤트리스너 많이 쓴 것 수정
     </script>
   </body>
 </html>
