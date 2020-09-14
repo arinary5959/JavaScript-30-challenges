@@ -63,22 +63,45 @@
         for (let i = 0; i < audioPlayers.length; i++) {
           soundDataNums.push(audioPlayers[i].dataset.key);
         }
+        let keyBtnsDataNums = [];
+        for (let i = 0; i < keyBtns.length; i++) {
+          keyBtnsDataNums.push(keyBtns[i].dataset.key);
+        }
         keyBtns.forEach(function (btn) {
-          btn.addEventListener("click", soundOn);
+          btn.addEventListener("mousedown", soundOn);
+          btn.addEventListener("mouseup", removeEffect);
         });
+        window.addEventListener("keydown", soundOnBykey);
+        window.addEventListener("keyup", keyOff);
         function soundOn() {
           let btnDataNum = this.dataset.key;
           let CrrIndexNumOfSound = soundDataNums.findIndex(
             (element) => element === btnDataNum
           );
           audioPlayers[CrrIndexNumOfSound].play();
-          // console.log(audioPlayers[0].dataset.key);
-          // console.log(
-          //   soundDataNums.findIndex((element) => element === btnDataNum)
-          // );
-          //console.log(soundDataNums.find((element) => element === btnDataNum));
+          this.style.borderColor = "yellow";
         }
-        //console.dir(audioPlayers);
+        function removeEffect() {
+          this.style.borderColor = "black";
+        }
+        function soundOnBykey(e) {
+          let keyDataNum = e.keyCode;
+          let CrrIndexNumOfSound = soundDataNums.findIndex(
+            (element) => element === `${keyDataNum}`
+          );
+          audioPlayers[CrrIndexNumOfSound].play();
+          let a = keyBtnsDataNums.findIndex(
+            (element) => element === `${keyDataNum}`
+          );
+          keyBtns[a].style.borderColor = "yellow";
+        }
+        function keyOff(e) {
+          let keyDataNum = e.keyCode;
+          let a = keyBtnsDataNums.findIndex(
+            (element) => element === `${keyDataNum}`
+          );
+          keyBtns[a].style.borderColor = "black";
+        }
       }
     </script>
   </body>
