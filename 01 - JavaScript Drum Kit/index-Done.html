@@ -78,29 +78,31 @@
           let CrrIndexNumOfSound = soundDataNums.findIndex(
             (element) => element === btnDataNum
           );
+          audioPlayers[CrrIndexNumOfSound].currentTime = 0;
           audioPlayers[CrrIndexNumOfSound].play();
-          this.style.borderColor = "yellow";
+          this.classList.add("playing");
         }
         function removeEffect() {
-          this.style.borderColor = "black";
+          this.classList.remove("playing");
         }
         function soundOnBykey(e) {
           let keyDataNum = e.keyCode;
           let CrrIndexNumOfSound = soundDataNums.findIndex(
             (element) => element === `${keyDataNum}`
           );
+          audioPlayers[CrrIndexNumOfSound].currentTime = 0;
           audioPlayers[CrrIndexNumOfSound].play();
           let a = keyBtnsDataNums.findIndex(
             (element) => element === `${keyDataNum}`
           );
-          keyBtns[a].style.borderColor = "yellow";
+          keyBtns[a].classList.add("playing");
         }
         function keyOff(e) {
           let keyDataNum = e.keyCode;
           let a = keyBtnsDataNums.findIndex(
             (element) => element === `${keyDataNum}`
           );
-          keyBtns[a].style.borderColor = "black";
+          keyBtns[a].classList.remove("playing");
         }
       }
     </script>
